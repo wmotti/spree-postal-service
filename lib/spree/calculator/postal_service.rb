@@ -9,7 +9,7 @@ class Spree::Calculator::PostalService < Spree::Calculator
   preference :handling_max,    :decimal, default: 50
   preference :handling_fee,    :decimal, default: 10
   preference :default_weight,  :decimal, default: 1
-  preference :zipcode_handling,:string,  default: nil, description: '<empty> does not apply, exact, starts, ends, contains'
+  preference :zipcode_handling,:string,  default: nil
   preference :zipcode,         :string,  default: nil
 
   attr_accessible :preferred_weight_table,
@@ -62,11 +62,13 @@ class Spree::Calculator::PostalService < Spree::Calculator
     return true
   end
 
-  def item_oversized?(item)
+  def item_oversized? item
+    return false if self.preferred_max_item_length == 0 && self.preferred_max_item_width == 0
     variant = item.variant
-    sizes = [variant.width ? variant.width : 0, variant.depth ? variant.depth : 0, variant.height ? variant.height : 0].sort!
-    return true if sizes[0] > self.preferred_max_item_length
-    return true if sizes[0] > self.preferred_max_item_width
+    sizes = [ variant.width ? variant.width : 0 , variant.depth ? variant.depth : 0 , variant.height ? variant.height : 0 ].sort!
+    #puts "Sizes " + sizes.join(" ")
+    return true if self.preferred_max_item_length > 0 && sizes[0] > self.preferred_max_item_length
+    return true if self.preferred_max_item_width > 0 && sizes[0] > self.preferred_max_item_width
     return false
   end
 
@@ -78,8 +80,8 @@ class Spree::Calculator::PostalService < Spree::Calculator
   def available?(order)
     return false if !handle_zipcode?(order)
     order.line_items.each do |item| # determine if weight or size goes over bounds
-      return false if item.variant.weight && item.variant.weight > self.preferred_max_item_weight
-      return false if item_oversized? item
+      return false if self.preferred_max_item_weight > 0 && item.variant.weight && item.variant.weight > self.preferred_max_item_weight
+      return false if item_oversized?(item)
     end
     return false if total_overweight?(order)
     return true
