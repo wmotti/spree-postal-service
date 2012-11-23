@@ -10,8 +10,10 @@ This spree extension adds a spree-calculator to model this.
 
 **Other features:**
 
-- Size and weight restrictions can be specified
+- Size and weight restrictions by item and by order can be specified
+- You can also add zip code restrictions
 - You specify a weight/price table
+- Prices in the price table can be by weight unit (kg)
 - Handling fee may be added ( with a maximum when it won't be applied anymore)
 - Multi-parcel shipments are automatically created
 - You can specify a maximum order price, orders over this will not be charged
