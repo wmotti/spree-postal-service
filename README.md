@@ -90,7 +90,7 @@ Starting point:
 
 * Fork the repo
 * Clone your repo
-* Run `bundle`
+* Run `bundle install`
 * Run `bundle exec rake test_app` to create the test application in `spec/test_app`
 * Make your changes
 * Ensure specs pass by running `bundle exec rspec spec`
