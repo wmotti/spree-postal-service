@@ -9,6 +9,7 @@ group :test do
   gem 'database_cleaner'
   gem 'fuubar'
   gem 'i18n-spec'
+  gem 'guard-rspec'
   gem 'coveralls', require: false
 end
 
