@@ -1,4 +1,4 @@
-class Spree::Calculator::PostalService < Spree::Calculator
+class Spree::Calculator::Shipping::PostalService < Spree::ShippingCalculator
   preference :weight_table,    :string,  default: '1 2 5 10 20'
   preference :price_table,     :string,  default: '6 9 12 15 18'
   preference :price_table_by_weight_unit, :boolean, default: false
@@ -110,9 +110,9 @@ class Spree::Calculator::PostalService < Spree::Calculator
     return order_total_weight(order) <= self.preferred_min_total_weight
   end
 
-  def available?(order)
-    return false if !handle_zipcode?(order)
-    order.line_items.each do |item| # determine if weight or size goes over bounds
+  def available?(line_items)
+    return false if !handle_zipcode?(line_items)
+    line_items.each do |item| # determine if weight or size goes over bounds
       return false if self.preferred_max_item_weight_enabled && item.variant.weight && item.variant.weight > self.preferred_max_item_weight
       return false if item_oversized?(item)
     end
@@ -122,7 +122,9 @@ class Spree::Calculator::PostalService < Spree::Calculator
   end
 
   # as order_or_line_items we always get line items, as calculable we have Coupon, ShippingMethod or ShippingRate
-  def compute(order)
+  def compute(package)
+    order = package.order
+
     total_price, total_weight, shipping = 0, 0, 0
     prices = self.preferred_price_table.split.map { |price| price.to_f }
 
