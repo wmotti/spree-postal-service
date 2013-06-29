@@ -23,7 +23,7 @@ Use the same measurements as in the product info page.
 
 ## Usage
 
-Add to your Gemfile
+Add to your `Gemfile`:
 ```ruby
 gem 'spree_postal_service',  github: 'futhr/spree-postal-service'
 ```
@@ -32,11 +32,9 @@ Go to admin interface
 
 `http://localhost:3000/admin/shipping_methods/new`
 
-and use "Postal" as calculator.
+and use _Postal_ as calculator.
 
-The size/weight "table" must have the same amount of (space separated) entries.
-
-Optionally add your own locale to config/locales/ (and if you do, make a pull request)
+The size/weight _table_ must have the same amount of (space separated) entries.
 
 ## Example
 
@@ -79,6 +77,7 @@ Here are some ways *you* can contribute:
 * by using prerelease versions
 * by reporting [bugs][2]
 * by suggesting new features
+* by writing [translations][4]
 * by writing or editing documentation
 * by writing specifications
 * by writing code (*no patch is too small*: fix typos, add comments, clean up inconsistent whitespace)
@@ -101,3 +100,5 @@ Copyright (c) 2013 Torsten Rüger, released under the [New BSD License][3]
 [1]: http://www.fsf.org/licensing/essays/free-sw.html
 [2]: https://github.com/futhr/spree-postal-service/issues
 [3]: https://github.com/futhr/spree-postal-service/tree/master/LICENSE
+[4]: http://www.localeapp.com/projects/4917
+
