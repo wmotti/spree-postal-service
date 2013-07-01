@@ -32,7 +32,7 @@ Go to admin interface
 
 `http://localhost:3000/admin/shipping_methods/new`
 
-and use _Postal_ as calculator.
+and use _Postal Service_ as calculator.
 
 The size/weight _table_ must have the same amount of (space separated) entries.
 

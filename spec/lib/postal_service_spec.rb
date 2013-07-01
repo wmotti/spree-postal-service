@@ -3,6 +3,22 @@ require 'spec_helper'
 describe Spree::Calculator::Shipping::PostalService do
 	let(:postal_service_calculator) { Spree::Calculator::Shipping::PostalService.new }
 
+  describe "return description" do
+    context "in english" do
+      before { I18n.locale = :en }
+      specify do
+        postal_service_calculator.description.should eql "Postal Service"
+      end
+    end
+
+    context "in any language" do
+      before { I18n.locale = :pt }
+      specify do
+        postal_service_calculator.description.should eql Spree.t(:postal_service)
+      end
+    end
+  end
+
 	describe ":using the default weight-price table: [1 2 5 10 20] => [6 9 12 15 18]" do
 		context "#compute:" do
 			it "gives 15.0 when total price is 100 and weight is 10kg" do
