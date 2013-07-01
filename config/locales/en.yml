@@ -1,24 +1,24 @@
 ---
 en:
   spree:
-    price_table: Prices (space seperated)
-    weight_table: Weights (space seperated)
-    postal_service: Postal Service
-    max_item_weight: Max weight of one item
-    max_item_width: Max width of one item
-    max_item_length: Max length of one item
-    max_total_weight: Max total weight
-    handling_fee: Handling fee
-    handling_max: Amount, over which handling fee won't be applied
-    max_price: Maximum total of the order
-    default_weight: Default weight
-    zipcode_handling: Zipcode handling (empty field - does not apply, exact, starts, ends, contains)
+    default_weight: "Default weight"
+    handling_fee: "Handling fee"
+    handling_max: "Amount, over which handling fee won't be applied"
+    max_item_length: "Max length of one item"
+    max_item_length_enabled: "Max length of one item enabled?"
+    max_item_weight: "Max weight of one item"
+    max_item_weight_enabled: "Max weight of one item enabled?"
+    max_item_width: "Max width of one item"
+    max_item_width_enabled: "Max width of one item enabled?"
+    max_price: "Maximum total of the order"
+    max_price_enabled: "Maximum total of the order enabled?"
+    max_total_weight: "Max total weight"
+    max_total_weight_enabled: "Max total weight enabled?"
+    min_total_weight: "Min total weight"
+    min_total_weight_enabled: "Min total weight enabled?"
+    postal_service: "Postal Service"
+    price_table: "Prices (space seperated)"
+    price_table_by_weight_unit: "Price by weight unit?"
+    weight_table: "Weights (space seperated)"
+    zipcode_handling: "Zipcode handling (empty field - does not apply, exact, starts, ends, contains)"
     zipcodes: Zipcode(s)
-    max_item_weight_enabled: Max weight of one item enabled?
-    max_item_width_enabled: Max width of one item enabled?
-    max_item_length_enabled: Max length of one item enabled?
-    max_total_weight_enabled: Max total weight enabled?
-    max_price_enabled: Maximum total of the order enabled?
-    price_table_by_weight_unit: Price by weight unit?
-    min_total_weight_enabled: Min total weight enabled?
-    min_total_weight: Min total weight
