@@ -90,34 +90,32 @@ class Spree::Calculator::Shipping::PostalService < Spree::ShippingCalculator
     return result
   end
 
-  def item_oversized? item
-    return false if self.preferred_max_item_length_enabled && self.preferred_max_item_width_enabled == 0
-    variant = item.variant
-    sizes = [ variant.width ? variant.width : 0 , variant.depth ? variant.depth : 0 , variant.height ? variant.height : 0 ].sort!
-    #puts "Sizes " + sizes.join(" ")
-    return true if self.preferred_max_item_length_enabled && sizes[0] > self.preferred_max_item_length
-    return true if self.preferred_max_item_width_enabled && sizes[0] > self.preferred_max_item_width
+  def item_oversized?(variant)
+    sizes = [variant.width ? variant.width : 0, variant.depth ? variant.depth : 0, variant.height ? variant.height : 0].sort.reverse
+    return true if sizes[0] > self.preferred_max_item_length # longest side
+    return true if sizes[1] > self.preferred_max_item_width  # second longest side
     return false
   end
 
-  def total_overweight? order
+  def total_overweight?(order)
     return false if !self.preferred_max_total_weight_enabled
     return order_total_weight(order) > self.preferred_max_total_weight
   end
 
-  def total_underweight? order
+  def total_underweight?(order)
     return false if !self.preferred_min_total_weight_enabled
     return order_total_weight(order) <= self.preferred_min_total_weight
   end
 
-  def available?(line_items)
-    return false if !handle_zipcode?(line_items)
-    line_items.each do |item| # determine if weight or size goes over bounds
-      return false if self.preferred_max_item_weight_enabled && item.variant.weight && item.variant.weight > self.preferred_max_item_weight
-      return false if item_oversized?(item)
+  def available?(package_contents)
+    variants = package_contents.map(&:variant)
+    variants.each do |variant| # determine if weight or size goes over bounds
+      return false if variant.weight && variant.weight > self.preferred_max_item_weight # 18
+      return false if item_oversized? variant
     end
-    return false if total_overweight?(order)
-    return false if total_underweight?(order)
+    return false if !handle_zipcode?(variants)
+    return false if total_overweight?(variant)
+    return false if total_underweight?(variant)
     return true
   end
 
@@ -133,8 +131,8 @@ class Spree::Calculator::Shipping::PostalService < Spree::ShippingCalculator
       total_price  += item.price * item.quantity
     end
 
-    puts "Weight " + total_weight.to_s  if debug
-    puts "Price " + total_price.to_s if debug
+    logger.debug "Weight " + total_weight.to_s
+    logger.debug "Price " + total_price.to_s
 
     return 0.0 if self.preferred_max_price_enabled && total_price > self.preferred_max_price
 
@@ -163,7 +161,7 @@ class Spree::Calculator::Shipping::PostalService < Spree::ShippingCalculator
     else
       shipping += prices[index + 1]
     end
-    puts "Shipping  " + shipping.to_s  if debug
+    logger.debug "Shipping " + shipping.to_s
 
     return shipping + handling_fee
   end
