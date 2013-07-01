@@ -29,18 +29,18 @@ class Spree::Calculator::Shipping::PostalService < Spree::ShippingCalculator
     # ShippingMethod.register_calculator(self)
   end
 
-  def item_oversized?(item)
-    variant = item.variant
-    sizes = [variant.width ? variant.width : 0, variant.depth ? variant.depth : 0, variant.height ? variant.height : 0].sort!
-    return true if sizes[0] > self.preferred_max_item_length
-    return true if sizes[0] > self.preferred_max_item_width
+  def item_oversized?(variant)
+    sizes = [variant.width ? variant.width : 0, variant.depth ? variant.depth : 0, variant.height ? variant.height : 0].sort.reverse
+    return true if sizes[0] > self.preferred_max_item_length # longest side
+    return true if sizes[1] > self.preferred_max_item_width  # second longest side
     return false
   end
 
-  def available?(line_items)
-    line_items.each do |item| # determine if weight or size goes over bounds
-      return false if item.variant.weight && item.variant.weight > self.preferred_max_item_weight
-      return false if item_oversized? item
+  def available?(package_contents)
+    variants = package_contents.map(&:variant)
+    variants.each do |variant| # determine if weight or size goes over bounds
+      return false if variant.weight && variant.weight > self.preferred_max_item_weight # 18
+      return false if item_oversized? variant
     end
     return true
   end
