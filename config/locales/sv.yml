@@ -9,5 +9,6 @@ sv:
     max_item_length: Max längd på ett objekt
     handling_fee: Hantering avgift
     handling_max: "Belopp, över vilken expeditionsavgift inte skall tillämpas"
-    min_price: Minsta totala ordern
+    min_price: Minsta belopp
     default_weight: Förvald vikt
+    max_price: Största belopp

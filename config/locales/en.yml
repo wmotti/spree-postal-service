@@ -9,5 +9,6 @@ en:
     max_item_length: Max length of one item
     handling_fee: Handling fee
     handling_max: "Amount, over which handling fee won't be applied"
-    min_price: Minimum total of the order
+    min_price: Minimum price
     default_weight: Default weight
+    max_price: Maximum price
