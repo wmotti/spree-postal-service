@@ -25,7 +25,6 @@ class Spree::Calculator::Shipping::PostalService < Spree::ShippingCalculator
 
   def self.register
     super
-    # ShippingMethod.register_calculator(self)
   end
 
   def item_oversized?(variant)
