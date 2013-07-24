@@ -1,8 +1,8 @@
 # Spree Postal Service
 
-[![Build Status](https://travis-ci.org/futhr/spree-postal-service.png)](https://travis-ci.org/futhr/spree-postal-service)
+[![Build Status](https://travis-ci.org/futhr/spree-postal-service.png?branch=2-0-stable)](https://travis-ci.org/futhr/spree-postal-service)
 [![Dependency Status](https://gemnasium.com/futhr/spree-postal-service.png)](https://gemnasium.com/futhr/spree-postal-service)
-[![Coverage Status](https://coveralls.io/repos/futhr/spree-postal-service/badge.png?branch=master)](https://coveralls.io/r/futhr/spree-postal-service)
+[![Coverage Status](https://coveralls.io/repos/futhr/spree-postal-service/badge.png?branch=2-0-stable)](https://coveralls.io/r/futhr/spree-postal-service)
 
 A postal service is delivers based on weight only(*). Like most post services in europe will.
 
@@ -25,7 +25,7 @@ Use the same measurements as in the product info page.
 
 Add to your `Gemfile`:
 ```ruby
-gem 'spree_postal_service',  github: 'futhr/spree-postal-service'
+gem 'spree_postal_service',  github: 'futhr/spree-postal-service', branch: '2-0-stable'
 ```
 
 Go to admin interface
@@ -99,6 +99,6 @@ Copyright (c) 2013 Torsten Rüger, released under the [New BSD License][3]
 
 [1]: http://www.fsf.org/licensing/essays/free-sw.html
 [2]: https://github.com/futhr/spree-postal-service/issues
-[3]: https://github.com/futhr/spree-postal-service/tree/master/LICENSE.md
+[3]: https://github.com/futhr/spree-postal-service/blob/2-0-stable/LICENSE.md
 [4]: http://www.localeapp.com/projects/4917
 
