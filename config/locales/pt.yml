@@ -22,3 +22,4 @@ pt:
     weight_table: "Pesos (separados por espaços)"
     zipcode_handling: "Tratamento Código Postal (campo vazio - não activo, exact - exacto, starts - começa por, ends - termina em, contains - contém)"
     zipcodes: "Código(s) Postal(is)"
+    min_price: Preço mínimo

@@ -22,3 +22,4 @@ en:
     weight_table: "Weights (space seperated)"
     zipcode_handling: "Zipcode handling (empty field - does not apply, exact, starts, ends, contains)"
     zipcodes: Zipcode(s)
+    min_price: Minimum price
