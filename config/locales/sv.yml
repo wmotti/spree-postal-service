@@ -4,7 +4,6 @@ sv:
     default_weight: "Förvald vikt"
     handling_fee: "Hantering avgift"
     handling_max: "Belopp, över vilken expeditionsavgift inte skall tillämpas"
-<<<<<<< HEAD
     max_item_length: "Max längd på ett objekt"
     max_item_length_enabled: "Max längd på ett objekt aktiverad?"
     max_item_weight: "Max vikt på ett objekt"
@@ -23,8 +22,4 @@ sv:
     weight_table: "Vikter (mellanrums separerade)"
     zipcode_handling: "Postnr hantering (tomt fält - gäller inte, exakt, startar, slutar, innehåller)"
     zipcodes: Postnr
-=======
     min_price: Minsta belopp
-    default_weight: Förvald vikt
-    max_price: Största belopp
->>>>>>> 2-0-stable
