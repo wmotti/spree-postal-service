@@ -3,15 +3,15 @@ require 'spec_helper'
 describe Spree::Calculator::Shipping::PostalService do
 	let(:postal_service_calculator) { Spree::Calculator::Shipping::PostalService.new }
 
-  describe "return description" do
-    context "in english" do
+  describe 'return description' do
+    context 'in english' do
       before { I18n.locale = :en }
       specify do
-        postal_service_calculator.description.should eql "Postal Service"
+        postal_service_calculator.description.should eql 'Postal Service'
       end
     end
 
-    context "in any language" do
+    context 'in any language' do
       before { I18n.locale = :pt }
       specify do
         postal_service_calculator.description.should eql Spree.t(:postal_service)
@@ -19,40 +19,40 @@ describe Spree::Calculator::Shipping::PostalService do
     end
   end
 
-	describe ":using the default weight-price table: [1 2 5 10 20] => [6 9 12 15 18]" do
-		context "#compute:" do
-			it "gives 15.0 when total price is 100 and weight is 10kg" do
+	describe ':using the default weight-price table: [1 2 5 10 20] => [6 9 12 15 18]' do
+		context '#compute:' do
+			it 'gives 15.0 when total price is 100 and weight is 10kg' do
 				create_our_package(weight: 10.0, price: 100.0, quantity: 1)
 				result = postal_service_calculator.compute(@package)
 				result.should eq(15.0)
 			end
 
-			it "gives 25.0 when total price is 40 and weight is 10kg" do
+			it 'gives 25.0 when total price is 40 and weight is 10kg' do
 				create_our_package(weight: 10.0, price: 40.0, quantity: 1)
 				result = postal_service_calculator.compute(@package)
 				result.should eq(25.0)
 			end
 
-			it "gives 6 when total price is 60 and weight is less than 1kg" do
+			it 'gives 6 when total price is 60 and weight is less than 1kg' do
 				create_our_package(weight: 0.5, price: 60.0, quantity: 1)
 				result = postal_service_calculator.compute(@package)
 				result.should eq(6.0)
 			end
 
-			it "gives 16 when total price is 40 and weight is less than 1kg" do
+			it 'gives 16 when total price is 40 and weight is less than 1kg' do
 				create_our_package(weight: 0.5, price: 40.0, quantity: 1)
 				result = postal_service_calculator.compute(@package)
 				result.should eq(16.0)
 			end
 
-			it "gives 30 when total price is 200 and weight is 25kg (split into two)" do
+			it 'gives 30 when total price is 200 and weight is 25kg (split into two)' do
 				create_our_package(weight: 25.0, price: 200.0, quantity: 1)
 				postal_service_calculator.preferred_max_price = 250
 				result = postal_service_calculator.compute(@package)
 				result.should eq(30.0)
 			end
 
-			it "gives 12 when total price is 100, there are three items and their weight is unknown" do
+			it 'gives 12 when total price is 100, there are three items and their weight is unknown' do
 				order = create(:order)
 				[30.0, 40.0, 30.0].each do |price|
 					create(:line_item,
@@ -69,7 +69,7 @@ describe Spree::Calculator::Shipping::PostalService do
 				result.should eq(12.0)
 			end
 
-			it "gives 0 when total price is more than the MAX, for any number of items" do
+			it 'gives 0 when total price is more than the MAX, for any number of items' do
 				create_our_package(weight: 25.0, price: 350.0, quantity: 1)
 				postal_service_calculator.preferred_max_price = 300
 				result = postal_service_calculator.compute(@package)
@@ -78,31 +78,31 @@ describe Spree::Calculator::Shipping::PostalService do
 		end
 	end
 
-	describe "when preferred max weight, length and width are 18 kg, 120 cm and 60 cm" do
-		context "#available?" do
-			it "is false when item weighs more than 18kg" do
+	describe 'when preferred max weight, length and width are 18 kg, 120 cm and 60 cm' do
+		context '#available?' do
+			it 'is false when item weighs more than 18kg' do
 			  create_our_package(weight: 20, height: 70, width: 30, depth: 30)
 			  postal_service_calculator.available?(@package.contents).should be_false
 			end
 
-			it "is false when item is longer than 120cm" do
+			it 'is false when item is longer than 120cm' do
 			  create_our_package(weight: 10, height: 130, width: 30, depth: 30)
 			  postal_service_calculator.available?(@package.contents).should be_false
 			end
 
-			it "is false when item is wider than 60cm" do
+			it 'is false when item is wider than 60cm' do
 			  create_our_package(weight: 10, height: 80, width: 70, depth: 30)
 			  postal_service_calculator.available?(@package.contents).should be_false
 			end
 		end
 
-		context "#item_oversized?" do
-			it "is true if the longest side is more than 120cm" do
+		context '#item_oversized?' do
+			it 'is true if the longest side is more than 120cm' do
 			  create_our_package(weight: 10, height: 130, width: 40, depth: 30)
 			  postal_service_calculator.item_oversized?(@variant).should be_true
 			end
 
-			it "is true if the second longest side is more than 60cm" do
+			it 'is true if the second longest side is more than 60cm' do
 			  create_our_package(weight: 10, height: 80, width: 70, depth: 30)
 			  postal_service_calculator.item_oversized?(@variant).should be_true
 			end
