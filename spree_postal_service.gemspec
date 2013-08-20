@@ -12,9 +12,9 @@ Gem::Specification.new do |s|
   s.description  = s.summary
   s.required_ruby_version = '>= 1.9.3'
 
-  s.author       = 'Torsten Rüger'
-  s.email        = 'torsten@villataika.fi'
-  s.homepage     = 'https://github.com/dancinglightning/spree-postal-service'
+  s.authors      = ['Tobias Bohwalli', 'Torsten Rüger']
+  s.email        = 'hi@futhr.io'
+  s.homepage     = 'https://github.com/futhr/spree-postal-service'
   s.license      = %q{BSD-3}
 
   s.files        = `git ls-files`.split("\n")
@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'spree_core', '~> 2.0.0'
 
-  s.add_development_dependency 'rspec-rails', '~> 2.13'
+  s.add_development_dependency 'rspec-rails', '~> 2.14'
   s.add_development_dependency 'factory_girl', '~> 4.2'
   s.add_development_dependency 'sqlite3', '~> 1.3.7'
   s.add_development_dependency 'simplecov', '~> 0.7.1'

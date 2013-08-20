@@ -95,7 +95,7 @@ Starting point:
 * Ensure specs pass by running `bundle exec rspec spec`
 * Submit your pull request
 
-Copyright (c) 2013 [Torsten Rüger][5] and [contributors][6], released under the [New BSD License][3]
+Copyright (c) 2013 [Tobias Bohwalli][7], [Torsten Rüger][5] and [contributors][6], released under the [New BSD License][3]
 
 [1]: http://www.fsf.org/licensing/essays/free-sw.html
 [2]: https://github.com/futhr/spree-postal-service/issues
@@ -103,4 +103,4 @@ Copyright (c) 2013 [Torsten Rüger][5] and [contributors][6], released under the
 [4]: http://www.localeapp.com/projects/4917
 [5]: https://github.com/dancinglightning
 [6]: https://github.com/futhr/spree-postal-service/contributors
-
+[7]: https://github.com/futhr
