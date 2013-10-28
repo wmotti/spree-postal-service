@@ -34,8 +34,8 @@ class Spree::Calculator::Shipping::PostalService < Spree::ShippingCalculator
     return false
   end
 
-  def available?(package_contents)
-    variants = package_contents.map(&:variant)
+  def available?(package)
+    variants = package.contents.map(&:variant)
     variants.each do |variant| # determine if weight or size goes over bounds
       return false if variant.weight && variant.weight > self.preferred_max_item_weight # 18
       return false if item_oversized? variant

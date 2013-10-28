@@ -82,17 +82,17 @@ describe Spree::Calculator::Shipping::PostalService do
 		context '#available?' do
 			it 'is false when item weighs more than 18kg' do
 			  create_our_package(weight: 20, height: 70, width: 30, depth: 30)
-			  postal_service_calculator.available?(@package.contents).should be_false
+			  postal_service_calculator.available?(@package).should be_false
 			end
 
 			it 'is false when item is longer than 120cm' do
 			  create_our_package(weight: 10, height: 130, width: 30, depth: 30)
-			  postal_service_calculator.available?(@package.contents).should be_false
+			  postal_service_calculator.available?(@package).should be_false
 			end
 
 			it 'is false when item is wider than 60cm' do
 			  create_our_package(weight: 10, height: 80, width: 70, depth: 30)
-			  postal_service_calculator.available?(@package.contents).should be_false
+			  postal_service_calculator.available?(@package).should be_false
 			end
 		end
 
